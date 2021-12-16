@@ -1,6 +1,7 @@
-const searchButtonEl = document.querySelector("#submit-button")
-const searchHistory = document.querySelector("#cities-searched")
-const todayForecast = document.querySelector("#current-weather")
-const futureForecast = document.querySelector("#weather-forecast")
+var cities = [];
 
-const apiKey = 
+var citySearchEl = document.querySelector("#city-form");
+var cityInputEl = document.querySelector("#searched-city");
+var currentContainerEl = document.querySelector("")
+
+const apiKey = "d5d5a1652a4570f6a0810fd859cf2fbd"

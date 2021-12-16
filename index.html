@@ -18,58 +18,26 @@
 
     <div id="search-form-container" class="col-md-3">
     <!-- Search form-->
-        <section id="search-form">
-            <form>
-                <input type="text" placeholder="Enter a city" class="col-md-9">
+            <form id="city-form">
+                <input id="searched-city" type="text" placeholder="Enter a city" class="col-md-9">
                 <button id="submit-button" class="col-md-3" type="submit">Go</button>
                 <span class="msg"></span>
             </form>
-        </section>
 
         <!--Past cities searched-->
-            <div id="cities-container">
-                <ul class="cities-searched"></ul>
+            <div id="old-cities-container">
+                <ul class="past-cities"></ul>
             </div>
     </div>
     
     <div id="display-weather" class="col-md-9">
         <div id="current-weather" class="card col-md-12">
             <h4>Today's Weather</h4>
-            <div class="body-card">
-                <div id="city-icon">
-                </div>
-            </div>
+            <div class="current-card"></div>
         </div>
         <div id="weather-forecast" class="card col-md-12">
             <h4>Weather Forecast</h4>
-            <div id="forecast-cards">
-
-                <div id="1forecast" class="card-body col-md-2">
-                    <span class="card-title" id='1forecast-date'>
-                    </span>
-                </div>
-
-                <div id="2forecast" class="card-body col-md-2">
-                    <span class="card-title" id='2forecast-date'>
-                    </span>
-                </div>
-
-                <div id="3forecast" class="card-body col-md-2">
-                    <span class="card-title" id='3forecast-date'>
-                    </span>
-                </div>
-
-                <div id="4forecast" class="card-body col-md-2">
-                    <span class="card-title" id='4forecast-date'>
-                    </span>
-                </div>
-
-                <div id="5forecast" class="card-body col-md-2">
-                    <span class="card-title" id='5forecast-date'>
-                    </span>
-                </div>
-
-            </div>
+            <div id="forecast-cards"></div>
         </div>
 
     </div>
