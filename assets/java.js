@@ -29,6 +29,12 @@ var saveCitySearch = function(){
     localStorage.setItem("citiesArr", JSON.stringify("citiesArr"));
 };
 
+var getWeather = function(citySearch) {
+    var apiKey = "d5d5a1652a4570f6a0810fd859cf2fbd"
+    var apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}"
+
+    fetch(apiURL)
+}
 
 
 
