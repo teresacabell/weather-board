@@ -1,4 +1,4 @@
-var cities = [];
+var citiesArr = [];
 
 var cityFormEl = document.querySelector("#city-form");
 var citySearchEl = document.querySelector("#searched-city");
@@ -24,6 +24,10 @@ var formSubmitHandler = function(event) {
     saveCitySearch();
     addPastCity(citySearch);
 }
+
+var saveCitySearch = function(){
+    localStorage.setItem("citiesArr", JSON.stringify("citiesArr"));
+};
 
 
 
