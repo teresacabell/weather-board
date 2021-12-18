@@ -1,92 +1,52 @@
-var citiesArr = [];
+var searchButtonEl = document.querySelector("#submit-button");
+var searchCityEl = document.querySelector("#searched-city");
+var citySearchFormEl = document.querySelector("#city-form");
+var displayEl = document.querySelector("#display-weather");
+var cityEl = document.querySelector("#cityEl");
+var temperatureEl = document.querySelector("#temperature");
+var windEl = document.querySelector("#wind");
+var humidityEl = document.querySelector("#humidity");
+var uvEl = document.querySelector("#uv");
 
-var cityFormEl = document.querySelector("#city-form");
-var citySearchEl = document.querySelector("#searched-city");
-var currentContainerEl = document.querySelector("#current-weather");
-var currentCity = document.querySelector("#current-city");
-var forecastEl = document.querySelector("#forecast");
-var forecastContainerEl = document.querySelector("#forecast-cards");
-var pastCitiesEl = document.querySelector("#past-cities");
-var newTime = new Date();
-var currentTime = newTime.getHours();
+
+// api key
 var apiKey = "d5d5a1652a4570f6a0810fd859cf2fbd"
 
-var formSubmitHandler = function(event) {
+// search for city 
+var searchCity = function(event) {
     event.preventDefault();
+    var city = searchCityEl.ariaValueMax.trim();
+    searchCity(city)
+}
+searchButtonEl.addEventListener('click', searchCity);
 
-    var citySearch = citySearchEl.value.trim();
-    if(citySearch) {
-        getWeather(citySearch);
-        getForecast(citySearch);
-    } else {
-        alert("Please search for a city!");
-    }
-    saveCitySearch();
-    addPastCity(citySearch);
+// finds city
+var findCity = function(cityName) {
+    var apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&sppid=" + apiKey;
+        fetch(apiURL)
+        .then(response => {
+            if (response.ok) {
+                response.json()
+                .then(function(data) {
+                    city.innerHTML = cityName
+                    getWeather(data.coord.lat, data.coord.lon)
+                }) 
+            }
+        })
 }
 
-
-// save weather to an array
-var saveCitySearch = function(){
-    localStorage.setItem("citiesArr", JSON.stringify("citiesArr"));
-};
-
-// retrieve weather
- var getWeather = function(citySearch){
-   var apiURL = "api.openweathermap.org/data/2.5/weather?q=" + {city name} + "&appid=" API key
-
-    fetch(apiURL)
-    .then(function(response){
-        response.JSON().then(function(data){
-           console.log(data);
-         showWeather(data,citySearch);
-       });
-   });
- };
-
-// get UV
-
-
-// display weather
-// var showWeather = function(){
-
-    // get date
-    function currentDate() {
-        var options = {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        };
-        var thisDate = newTime.toLocaleDateString("en-US", options);
-        document.getElementById("currentDay").innerHTML = thisDate;
-      }
-      currentDate();
-
-    // create icon
-
-    // make something to hold temp & append
-
-    // make something to hold humidity & append
-
-    // make someting to hold wind & append
-
-    // display uv
-
-
-
-// get forecast
-
-// display forecast
-
-    // create date & append
-    // create icon & append
-    // create temp & append
-    // create humdity & append
-    
-    // append all to forecast container
-
-// past search
-// past search handler
-
-// call functions
+// gather data
+    var pullWeather = function(lat,lon){
+        var apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey;
+        fetch(apiURL)
+        .then(response => {
+            response.json()
+            .then(function(data) {
+                console.log(data)
+                temperatureEl.textContent = "Temperature is " + data.current.temp + "degrees Fahrenheit"
+                windEl.textContent = "Wind is " + data.current.wind_speed + "MPH"
+                humidityEl.textContent = "Humidity is " data.current.uv + "%"
+                uvEl.textContent = "UV Index is " + data.current.uv
+            })
+        })
+    }
