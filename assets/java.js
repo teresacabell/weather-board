@@ -5,6 +5,7 @@ var citySearchFormEl = document.querySelector("#city-form");
 var currentWeather = document.querySelector("#current-container");
 var futureForecast = document.querySelector("#future-forecast");
 var forecastEl = document.querySelector("#weather-forecast");
+var pastCitiesCon = document.querySelector("#past-cities-container");
 
 // api key
 var apiKey = "d5d5a1652a4570f6a0810fd859cf2fbd"
@@ -17,7 +18,7 @@ var formSubmitHandler = function(event) {
     var city = searchCityEl.value.trim();
     console.log(city)
         if (city) {
-           showCity(city);
+            showCity(city);
             currentCityEl.textContent = "";
             searchCityEl.value = "";
         } else {
@@ -90,7 +91,7 @@ searchButtonEl.addEventListener("click", formSubmitHandler);
                         uvFive.innerHTML = "UV index is " + fiveUV;
 
                         futureForecast.append(fiveDate);
-                        fiveDate.append(fiveImg);
+                        futureForecast.append(imgFive);
                         futureForecast.append(tempFive);
                         futureForecast.append(humFive);
                         futureForecast.append(windFive);
@@ -99,13 +100,12 @@ searchButtonEl.addEventListener("click", formSubmitHandler);
 
 
                 })
-                pullForecast.innerHTML = "";
-                forecastEl.innerHTML = "";
 
             }
         })
     };
-// pullForecast();
+
+    pullForecast();
    
 // get lat and lon 
 var showCity = function(city) {
@@ -125,3 +125,17 @@ var showCity = function(city) {
             }
         })
     }
+
+    var finishedCity = function(event) { 
+        event.preventDefault();
+        var city = searchCityEl.value.trim();
+        console.log(city);
+        showCity(city)
+    }
+
+var storeCity = (city) => {
+    var saveCity = document.createElement("button");
+    saveCity.innerHTML = city;
+    pastCitiesCon.append(saveCity);
+    
+}
