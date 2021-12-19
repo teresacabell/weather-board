@@ -4,6 +4,10 @@
     box-sizing: border-box;
     font-weight: normal;
 }
+ 
+body { 
+    padding-top: 20px;
+}
 
 .banner {
     position: relative;
@@ -11,14 +15,17 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    background-color: blue;
+    color: white;
 }
 
 #search-form-container {
     position: relative;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
     float: left;
+
 }
 
 #submit-button {
@@ -32,6 +39,21 @@
     flex-wrap: wrap;
 }
 
-.forecast-cards {
+#future-forecast {
     justify-content: space-evenly;
+}
+
+#current-weather,
+#weather-forecast {
+    background-color: white;
+}
+
+h3 {
+    color: blue;
+}
+
+.card { 
+    flex: wrap;
+    display: flex;
+    
 }

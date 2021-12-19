@@ -17,6 +17,9 @@ var formSubmitHandler = function(event) {
     // get city from search
     var city = searchCityEl.value.trim();
     console.log(city)
+    currentWeather.innerHTML = "";
+    futureForecast.innerHTML = ""; 
+
         if (city) {
             showCity(city);
             currentCityEl.textContent = "";
@@ -75,6 +78,7 @@ searchButtonEl.addEventListener("click", formSubmitHandler);
                         var fiveWind = data.daily[i].wind_speed;
                         var fiveUV = data.daily[i].uvi;
 
+                        var forecastInCon = document.createElement("div")
                         var dateFive = document.createElement("h4");
                         var imgFive = document.createElement("img");
                         var tempFive = document.createElement("p");
@@ -82,6 +86,7 @@ searchButtonEl.addEventListener("click", formSubmitHandler);
                         var windFive = document.createElement("p");
                         var uvFive = document.createElement("p");
 
+                        forecastInCon.className = "card";
                         fiveDate.innerHTML = fiveDate.toLocaleDateString();
                         imgFive.setAttribute("src", "http://openweathermap.org/img/wn/" + fiveImg + ".png");
                         imgFive.setAttribute("alt", "weather descriptive img");
@@ -90,6 +95,7 @@ searchButtonEl.addEventListener("click", formSubmitHandler);
                         windFive.innerHTML = "Wind speed is " + fiveWind + " mph";
                         uvFive.innerHTML = "UV index is " + fiveUV;
 
+                        futureForecast.append(forecastInCon);
                         futureForecast.append(fiveDate);
                         futureForecast.append(imgFive);
                         futureForecast.append(tempFive);
