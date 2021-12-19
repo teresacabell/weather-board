@@ -4,6 +4,7 @@ var currentCityEl = document.querySelector("#current-city");
 var citySearchFormEl = document.querySelector("#city-form");
 var currentWeather = document.querySelector("#current-container");
 var futureForecast = document.querySelector("#future-forecast");
+var forecastEl = document.querySelector("#weather-forecast");
 
 // api key
 var apiKey = "d5d5a1652a4570f6a0810fd859cf2fbd"
@@ -45,10 +46,10 @@ searchButtonEl.addEventListener("click", formSubmitHandler);
 
                     var dateEl = document.createElement("h4");
                     var iconEl = document.createElement("img")
-                    var degEl = document.createElement("h5");
-                    var humEl = document.createElement("h5");
-                    var windEl = document.createElement("h5")
-                    var uvEl = document.createElement("h5")
+                    var degEl = document.createElement("p");
+                    var humEl = document.createElement("p");
+                    var windEl = document.createElement("p")
+                    var uvEl = document.createElement("p")
 
                     dateEl.innerHTML = todayDate + " in " + city;
                     iconEl.setAttribute("src","http://openweathermap.org/img/wn/" + todayIcon + ".png");
@@ -65,21 +66,42 @@ searchButtonEl.addEventListener("click", formSubmitHandler);
                     currentWeather.append(uvEl);
 
                     // five day forecast
-                    for (var i = 0, i < 5, i++) {
+                    for (var i = 0; i < 5; i++) {
                         var fiveDate = new Date(data.daily[i].dt*1000);
                         var fiveImg = data.daily[i].weather[0].icon;
                         var fiveTemp = data.daily[i].temp.day;
                         var fiveHum = data.daily[i].humidity;
                         var fiveWind = data.daily[i].wind_speed;
                         var fiveUV = data.daily[i].uvi;
-                        console.log(fiveUV)
 
-                        var fiveDate = document.createElement("h4")
-                        var 
+                        var dateFive = document.createElement("h4");
+                        var imgFive = document.createElement("img");
+                        var tempFive = document.createElement("p");
+                        var humFive = document.createElement("p");
+                        var windFive = document.createElement("p");
+                        var uvFive = document.createElement("p");
+
+                        fiveDate.innerHTML = fiveDate.toLocaleDateString();
+                        imgFive.setAttribute("src", "http://openweathermap.org/img/wn/" + fiveImg + ".png");
+                        imgFive.setAttribute("alt", "weather descriptive img");
+                        tempFive.innerHTML = "Temperature is " + fiveTemp + " degrees F";
+                        humFive.innerHTML = "Humidity is " + fiveHum + " %";
+                        windFive.innerHTML = "Wind speed is " + fiveWind + " mph";
+                        uvFive.innerHTML = "UV index is " + fiveUV;
+
+                        futureForecast.append(fiveDate);
+                        fiveDate.append(fiveImg);
+                        futureForecast.append(tempFive);
+                        futureForecast.append(humFive);
+                        futureForecast.append(windFive);
+                        futureForecast.append(uvFive);
                     }
 
 
                 })
+                pullForecast.innerHTML = "";
+                forecastEl.innerHTML = "";
+
             }
         })
     };
